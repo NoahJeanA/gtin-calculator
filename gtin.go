@@ -8,7 +8,6 @@ import (
 	"strings"
 )
 
-// checksum calculates GTIN check digit according to GS1 standard
 func checksum(digits []int) int {
 	sum := 0
 	for i, d := range digits {
@@ -21,12 +20,10 @@ func checksum(digits []int) int {
 	return (10 - (sum % 10)) % 10
 }
 
-// validate checks complete GTIN
 func validate(digits []int) bool {
 	return len(digits) > 1 && checksum(digits[:len(digits)-1]) == digits[len(digits)-1]
 }
 
-// toDigits converts string to digit slice
 func toDigits(s string) []int {
 	var digits []int
 	for _, r := range s {
@@ -37,7 +34,6 @@ func toDigits(s string) []int {
 	return digits
 }
 
-// intSliceToString converts []int to string
 func intSliceToString(digits []int) string {
 	var sb strings.Builder
 	for _, d := range digits {
